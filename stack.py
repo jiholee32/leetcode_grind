@@ -57,6 +57,5 @@ def reverse_word(word: str) -> str:
 
 
 #테스트 코드
-print(reverse_word("aircraft"))
 
 

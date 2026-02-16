@@ -435,9 +435,64 @@ class feb15:
     def reverseWords(self, s: str) -> str:
         s = s.strip() #should not contain leading or tailing spaces
         s_list = s.split(' ')
-        ans = []
+        ans = [] 
         for item in s_list:
             if item:
                 ans.append(item)
         ans.reverse()
         return ' '.join(ans)
+
+
+'''
+Feb 16 Daily Challenge
+'''
+class MinStack:
+    def __init__(self):
+        self.stack = [] 
+        
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+    
+    def pop(self) -> None:
+        if self.stack:
+            self.stack.pop()
+        
+    def top(self) -> int:
+        return self.stack[-1]
+        
+    def getMin(self) -> int:
+        return min(self.stack) #could probably optimize this part
+
+class MyStack:
+    def __init__(self):
+        self.stack = []
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+    def pop(self) -> int:
+        if not self.stack:
+            return None 
+        return self.stack.pop()
+    def top(self) -> int:
+        if self.stack:
+            return self.stack[-1]
+        return None
+    def empty(self) -> bool:
+        return not self.stack
+
+class MyQueue:
+    def __init__(self):
+        self.queue = []
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+    def pop(self) -> int:
+        if not self.queue:
+            return None
+        else:
+            first = self.queue[0]
+            del self.queue[0]
+            return first
+    def peek(self) -> int:
+        if not self.queue:
+            return None
+        else:
+            return self.queue[0]
