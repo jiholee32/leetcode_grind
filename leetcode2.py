@@ -427,12 +427,17 @@ class Solution4:
         return self.helper(s) == self.helper(t)
 
             
-
-
-
-
-    #빈 리스트에 아이템을 하나씩 집어 넣는다
-    #리스트가 비어있으면 추가 하고 만약에 리스트 마지막 아이템이 s의 아이템과 같으면 (중복이면)
-    #리스트를 팝 한다
-    #마지막 글자까지 검사한다
-    #리스트에 남아있는 글자들을 연결시켜서 최종 문자열을 만든다
+'''
+Feb 15th Daily Challenge
+151. Reverse Words in a String
+'''
+class feb15:
+    def reverseWords(self, s: str) -> str:
+        s = s.strip() #should not contain leading or tailing spaces
+        s_list = s.split(' ')
+        ans = []
+        for item in s_list:
+            if item:
+                ans.append(item)
+        ans.reverse()
+        return ' '.join(ans)
