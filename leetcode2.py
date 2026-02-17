@@ -496,3 +496,65 @@ class MyQueue:
             return None
         else:
             return self.queue[0]
+'''
+Feb 17 Daily Challenge
+'''
+class Bits:
+    def countBits(self, n: int) -> List[int]:
+        lst = []
+        for i in range(n+1):
+            i_str = str(bin(i)[2:])
+            count = 0
+            for item in i_str:
+                if '1' in item:
+                    count += 1
+            lst.append(count)
+        return lst
+
+class Sttairs:
+    def climbStairs(self, n: int) -> int:
+        lst = [1,2]
+        if n == 1:
+            return 1
+        elif n == 2:
+            return 2
+        else:
+            while len(lst) < n:
+                lst.append(lst[-1] + lst[-2]) #이것도 다이나믹 프로그래밍임
+        return lst[-1]
+
+# nums = [2,3,1,1,4]
+# # 시작: 0번 인덱스에서 시작한다
+# # you can add range of numbers from 1 to idx
+# # 그렇게 이동한 위치에서 또 1 to idx 만큼 더한다
+# # 이렇게 나온 숫자의 조합으로 len(nums)-1에 도달 할 수 있는지 본다
+# def jump_game(nums):
+#     start = 0
+#     for idx, i in enumerate(nums):
+#         start += 
+#         #start에 어떤 식으로 더해서 len(nums)-1이 나오게 할 수 있는지 보고 싶다
+#         #이 로직만 다이나믹 프로그래밍으로 해결 할 수 있으면 정답이 나올것 같은데
+#         #더하는 로직이 이게 아닌거 같은데
+#         if start == len(nums)-1:
+#             return True
+#     return False 
+
+def jump_game_greedy(nums):
+    'Failed to solve'
+    max_reach = 0 
+    
+    for idx, jump_len in enumerate(nums):
+        if idx > max_reach:
+            return False
+        
+        current_jump = idx + jump_len
+        if current_jump > max_reach:
+            max_reach = current_jump
+            
+        if max_reach >= len(nums) - 1:
+            return True
+            
+    return False
+
+
+    
