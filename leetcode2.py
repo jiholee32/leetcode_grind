@@ -1,4 +1,4 @@
-
+from collections import Counter
 import itertools
 def removeElement(nums: List[int], val: int) -> int:
     a = 0
@@ -556,5 +556,34 @@ def jump_game_greedy(nums):
             
     return False
 
+'''
+FEB 18 Daily Challenge
 
-    
+힌트를 보고 max depth를 구현한것은 아쉬웠음. stack 로직으로 그걸 계산하는 과정은 괜찮았음
+'''
+
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        #open bracket이면 푸쉬
+        #close bracket 이면 팝
+        #push pop을 트랙하는 스택이라는 리스트를 만들어야 하나
+        #리스트의 최대 길이를 기억하는 변수를 가지고 있는다
+        #리스트의 길이가 최대일때 그 값을 기억해두고 있다가
+        #문자열을 끝꺼지 돌고 나서 다 끝나면 리턴한다
+        stack = []
+        max_length = 0
+        for word in s:
+            #지금 당장 스택의 최대 길이가 얼마일지 저장하는 변수
+            
+            if not max_length or len(stack) > max_length:
+                max_length = len(stack)
+
+            #open bracket을 만났기 때문에 stack에 추가한다
+            if word == '(':
+                stack.append(word)
+
+            #close bracket so pop
+            elif word == ')':
+                stack.pop()
+        return max_length
+
