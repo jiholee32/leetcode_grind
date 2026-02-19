@@ -587,3 +587,22 @@ class Solution:
                 stack.pop()
         return max_length
 
+'''Feb 19 Leetcode challenge'''
+class SolutionFeb19:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        idx = 0 
+        final_output = [] 
+        while idx < len(prices):
+            current = prices[idx] 
+            length = len(prices)
+            conditions_met = False
+            for i in range(idx+1,length):
+                if prices[i] <= current:
+                    final_output.append(current - prices[i])
+                    conditions_met = True
+                    break
+            if not conditions_met:
+                final_output.append(current)
+            idx += 1
+        return final_output
+#구조 자체는 괜찮았지만 로직에 빈틈이 많이 있었음
