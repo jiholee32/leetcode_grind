@@ -611,7 +611,6 @@ class SolutionFeb19:
 Feb 20
 '''
 
-
 def romanToInt(self, s: str) -> int:
         conversion = {'I':1, 'V':5, 'X':10, 'L':50, 'C': 100, 'D':500, 'M':1000, 'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
         total_sum = 0
@@ -632,12 +631,28 @@ def romanToInt(self, s: str) -> int:
             
 
 
+'''
+Feb 21
+'''
 
+class Feb21:
+    def alphabetically(self,word):
+        sorted_chars = sorted(word) # Returns a list: ['a', 'b', 'c']
+        sorted_string = "".join(sorted_chars)
+        return sorted_string
+ 
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagram_groups = {}
+        for word in strs:
+            sorted_word = self.alphabetically(word)
+            if not sorted_word in anagram_groups:
+                anagram_groups[sorted_word] = [word]
+            else:
+                anagram_groups[sorted_word].append(word)
 
-conversion = {'I':1, 'V':5, 'X':10, 'L':50, 'C': 100,
- 'D':500, 'M':1000, 'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
+        final_output = []
+        for key, value in anagram_groups.items():
+            final_output.append(value)
+        return final_output
 
-ex1 = 'XLV'
-first = 0
-second = 1
-
+#TODO: 77 combinations
