@@ -606,3 +606,38 @@ class SolutionFeb19:
             idx += 1
         return final_output
 #구조 자체는 괜찮았지만 로직에 빈틈이 많이 있었음
+
+'''
+Feb 20
+'''
+
+
+def romanToInt(self, s: str) -> int:
+        conversion = {'I':1, 'V':5, 'X':10, 'L':50, 'C': 100, 'D':500, 'M':1000, 'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
+        total_sum = 0
+        idx = 0
+        #첫 두글자가 특수한 경우인지 확인한다 (yes 라면 두글자를, no 라면 한글자를 추가한다)"
+        while idx < len(s):
+            #idx 하나만 사용하는거니까 len(s)-1이 아니다
+
+            #두개가 뭉텅이로 있는 경우
+            if s[idx:idx+2] in conversion:
+                total_sum += conversion[s[idx:idx+2]]
+                idx += 2
+            #하나만 있는 경우
+            else:
+                total_sum += conversion[s[idx]]
+                idx += 1
+        return total_sum
+            
+
+
+
+
+conversion = {'I':1, 'V':5, 'X':10, 'L':50, 'C': 100,
+ 'D':500, 'M':1000, 'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
+
+ex1 = 'XLV'
+first = 0
+second = 1
+
