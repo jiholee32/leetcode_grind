@@ -655,4 +655,37 @@ class Feb21:
             final_output.append(value)
         return final_output
 
-#TODO: 77 combinations
+''' Feb 22'''
+
+class Feb22:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        if n == 1 and k == 1:
+            return [[1]]
+        #itertools.combinations 사용하기 위한 단계
+        numbers = []
+        for i in range(1,n+1):
+            numbers.append(i)
+
+        lst = []
+        result_combinations = itertools.combinations(numbers, k)
+        for combo in result_combinations:
+            lst.append(list(combo))
+        return lst   
+
+
+
+class Feb22Second:
+    def countPrimes(self, n):
+        '아리스토테네스의 체'
+        #base case
+        if n == 0 or n == 1:
+            return 0
+        lst = [True for _ in range(n)]
+        lst[0] = False
+        lst[1] = False
+        for i in range(len(lst)):
+            if lst[i] == True:
+                # i의 배수에 있는 인덱스를 모두 False로 바꾼다
+                for item in range(i * 2, n, i):
+                    lst[item] = False
+        return lst.count(True)
