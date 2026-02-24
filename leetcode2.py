@@ -689,3 +689,54 @@ class Feb22Second:
                 for item in range(i * 2, n, i):
                     lst[item] = False
         return lst.count(True)
+
+
+'''
+Feb 24
+'''
+class Feb24:
+    def countSegments(self, s: str) -> int:
+        if not s:
+            return 0
+        s_list = s.split()
+        #공백이 여러개 있을떄는 굳이 '' 안 넣으면 파이썬이 알아서 해결해준다
+        return len(s_list)
+        
+#리스트에 숫자들을 모아두는 대신, **'현재까지 사용한 동전의 총합'**과 **'현재 층수(다음에 더할 숫자)'**를 
+# 저장하는 변수 딱 두 개만 사용해서 숫자를 누적해 보면 어떨까요?
+
+class Solution:
+    def arrangeCoins(self, n: int) -> int:
+
+        #n개의 동전에서 1개 빼고, 2개 빼고, 
+        # 3개 빼는 식으로 남은 동전이 부족해질 때까지 진행하는 방법도 
+        number_to_sub = 1
+        sub_counter = 0
+
+        while n > 0:
+            n = n - number_to_sub
+            number_to_sub += 1
+            sub_counter += 1
+        if n == 0:
+            return sub_counter
+        else:
+            return sub_counter - 1
+
+class Flip90:
+    def transpose_zip(self, matrix):
+        'Helper to '
+        if not matrix:
+            return []
+        return [list(row) for row in zip(*matrix)]
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        
+        transposed = self.transpose_zip(matrix)
+
+        final_outupt = []
+        for board in transposed:
+            final_outupt.append(board[::-1])
+        #메모리 주소는 그대로 유지하고 껍데기만 바꾸는 중요한 코드이다
+        matrix[:] = final_outupt
