@@ -740,3 +740,15 @@ class Flip90:
             final_outupt.append(board[::-1])
         #메모리 주소는 그대로 유지하고 껍데기만 바꾸는 중요한 코드이다
         matrix[:] = final_outupt
+
+'''
+mar 01 
+'''
+class mar01:
+    def intersection(self, nums1: List[int], nums2: List[int]):
+        set1 = set(nums1)
+        set2 = set(nums2)
+        a = list(set1.intersection(set2))
+        return a
+
+#TODO: 33번은 다시 풀어보기
