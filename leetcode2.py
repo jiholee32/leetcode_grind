@@ -752,3 +752,102 @@ class mar01:
         return a
 
 #TODO: 33번은 다시 풀어보기
+
+class Eureka:
+    def majorityElement(self, nums: List[int]) -> int:
+        majority_element = None
+        count = 0
+        for num in nums:
+            if count == 0:
+                majority_element = num
+            if num == majority_element:
+                count += 1
+            elif num != majority_element:
+                count -= 1
+        return majority_element
+
+
+
+class mar4k:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums = sorted(nums)
+        n = len(nums)
+        lst = []
+        for i in range(n+1):
+            a = list(set(list(itertools.combinations(nums, i))))
+            for item in a:
+                lst.append(list(item))
+        return lst
+
+def majority(nums: List[int]) -> int:
+
+    more_than = len(nums) / 2
+    counter = {}
+    for item in nums:
+        if item in counter:
+            counter[item] += 1
+        else:
+            counter[item] = 1
+    ans = None
+    for key, value in counter.items():
+        if value >= more_than:
+            ans = key
+    return ans
+
+#TODO: 187
+
+class ans278:
+    def firstBadVersion(self, n: int) -> int:
+        low = 1
+        high = n
+        temp_ans = None
+        while low <= high:
+            mid = (low+high) // 2
+
+            if isBadVersion(mid) == True: #if it is a bad version
+                #범위를 왼쪽으로 줄인다
+                temp_ans = mid
+                #바로 리턴하는게 아니라 다른 값들이 있을수도 있으니
+                #값을 저장해두어야 한다
+                high = mid - 1
+            else:
+                low = mid + 1
+        return temp_ans
+
+
+
+
+class NestedIterator:
+    def __init__(self, nestedList: [NestedInteger]):
+        self.nestedlist = nestedList
+        self.new_list = []
+        self.index = 0 #다음 요소를 확인하기 위해서
+
+        def flat(current_list,new_list):
+            for item in current_list:
+            #base case
+                if item.isInteger():
+                    new_list.append(item.getInteger())
+                else:
+                    flat(item.getList(), new_list)
+            return new_list
+        self.flat_list = flat(self.nestedlist, self.new_list)
+
+        
+    
+    def next(self) -> int:
+        #말그대로 리스트에서 다음 값을 가져오는거임
+        next_value = self.flat_list[self.index]
+        self.index += 1
+        return next_value
+        
+
+    
+    def hasNext(self) -> bool:
+        if self.index < len(self.flat_list):
+            return True
+        else:
+            return False
+        
+         
+
