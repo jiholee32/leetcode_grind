@@ -815,8 +815,6 @@ class ans278:
         return temp_ans
 
 
-
-
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
         self.nestedlist = nestedList
@@ -833,16 +831,12 @@ class NestedIterator:
             return new_list
         self.flat_list = flat(self.nestedlist, self.new_list)
 
-        
-    
     def next(self) -> int:
         #말그대로 리스트에서 다음 값을 가져오는거임
         next_value = self.flat_list[self.index]
         self.index += 1
         return next_value
         
-
-    
     def hasNext(self) -> bool:
         if self.index < len(self.flat_list):
             return True
@@ -850,4 +844,26 @@ class NestedIterator:
             return False
         
          
+prices = [8,4,6,2,3]
+#8보다 작은 수 4 발견 -> 8-4 = 4를 리스트에 추가
+#4보다 작은 수 2 발견 -> 4-2 = 2를 리스트에 추가
+#6보다 작은 수 2 발견 -> 6-2 = 4를 리스트에 추가
+#자기보다 작은 수를 못 찾으면 자기 자신을 그냥 추가한다
+class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        new_lst = []
+        for i in range(len(prices)):
+    
+            for j in range(i+1,len(prices)):
+            #i 보다 뒤에 있는 요소들을 표현하는 방법이다
+                if prices[i] >= prices[j]:
+                #기준점보다 작은 값을 발견하면 리스트에 할인 받은 값을 담아둔다
+                    new_lst.append(prices[i] - prices[j])
+                    break
+            else:
+                new_lst.append(prices[i])
+        return new_lst
+
+
+
 
